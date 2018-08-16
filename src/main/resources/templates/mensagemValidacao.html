@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+	<head>
+	</head>
+	<body>
+	
+		<div class="alert alert-light text-center" role="alert" th:if="${not #strings.isEmpty(mensagem)}">
+			<h1 class="display-4">
+				<span th:text="${mensagem}">
+				
+				</span>
+			</h1>
+		</div>
+	
+	</body>
+</html>

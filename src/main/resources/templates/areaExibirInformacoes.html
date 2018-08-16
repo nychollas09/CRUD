@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../static/IMG/icon.png" th:href="@{../IMG/icon.png}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/CSS/bootstrap4.1.min.css" th:href="@{../CSS/bootstrap4.1.min.css}">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/CSS/all.min.css" th:href="@{../CSS/all.min.css}">
+    <!-- Footer CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/CSS/footer.css" th:href="@{../CSS/footer.css}">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/CSS/dataTables.bootstrap4.min.css" th:href="@{../CSS/dataTables.bootstrap4.min.css}">
+
+    <title>CRUD</title>
+
+    <style>
+         html,
+        body,
+        header,
+        .view {
+        height: 100%;
+        }
+
+        @media (max-width: 740px) {
+        html,
+        body,
+        header,
+        .view {
+            height: 1000px;
+        }
+        }
+
+        @media (min-width: 800px) and (max-width: 850px) {
+        html,
+        body,
+        header,
+        .view {
+            height: 650px;
+        }
+        }
+    </style>
+
+  </head>
+  <body>
+
+    <!-- Imagem de fundo -->
+    <div class="view" style="background-image: url(../IMG/fundo1.jpeg); background-repeat: no-repeat; background-size: cover;">
+
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.2);">
+            <h1 class="display-3 ml-auto mr-auto text-white">
+                CRUD
+            </h1>
+        </nav>
+
+        <!-- Mascara e Configuração de posicionamento dos elementos-->
+        <div class="d-flex justify-content-center align-items-center text-center">
+
+            <div class="container p-5 mt-5">
+                <div class="row">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <form method="POST">
+                            <div class="card p-4">
+
+                                <a href="/" class="btn btn-light mr-auto" data-toggle="tooltip" data-placement="bottom" title="Voltar">
+                                    <i class="fa fa-arrow-left"></i>
+                                </a>
+
+                                <div class="card-body bg-white" th:each="pessoa : ${pessoa}">
+                                    
+                                    <h1 class="display-4 mb-5" style="font-size: 40px;">
+                                        <i class="fa fa-user mr-2"></i> Informações
+                                    </h1>
+
+                                    <div class="row">
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <h1 class="display-4" style="font-size: 25px;">
+                                                Nome: <i> <span th:text="${pessoa.nome}"></span> <span th:text="${pessoa.sobrenome}"></span> </i>
+                                            </h1>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <h1 class="display-4" style="font-size: 25px;">
+                                                Data de Nascimento: <i> <span th:text="${pessoa.dataDeNascimento}"></span> </i>
+                                            </h1>
+                                        </div>
+                                    </div>
+
+                                    <div class="row mt-4">
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <h1 class="display-4" style="font-size: 25px;">
+                                                Endereço: <i> <span th:text="${pessoa.endereco}"></span> </i>
+                                            </h1>
+                                        </div>
+                                        <div class="col-sm-12 col-md-6 col-lg-6">
+                                            <h1 class="display-4" style="font-size: 25px;">
+                                                Telefone: <i> <span th:text="${pessoa.telefone}"></span> </i>
+                                            </h1>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <footer class="footer text-center">
+      <div class="container">
+        <span class="text-muted">© 2018 Copyright Nichollas Falcão</span>
+      </div>
+    </footer>
+
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    
+        <script src="../static/JS/jquery-3.3.1.slim.min.js" type="text/javascript" th:src="@{../JS/jquery-3.3.1.slim.min.js}"></script>
+        <script src="../static/JS/jquery.smoothscroll.min.js" type="text/javascript" th:src="@{../JS/jquery.smoothscroll.min.js}"></script>
+
+        <script src="../static/JS/popper.min.js" type="text/javascript" th:src="@{../JS/popper.min.js}"></script>
+        <script src="../static/JS/bootstrap4.1.min.js" type="text/javascript" th:src="@{../JS/bootstrap4.1.min.js}"></script>
+
+        <script src="../static/JS/all.min.js" type="text/javascript" th:src="@{../JS/all.min.js}"></script>
+
+        <script src="../static/JS/jquery.dataTables.min.js" type="text/javascript" th:src="@{../JS/jquery.dataTables.min.js}"></script>
+        <script src="../static/JS/dataTables.bootstrap4.min.js" type="text/javascript" th:src="@{../JS/dataTables.bootstrap4.min.js}"></script>
+
+        <script src="../static/JS/jquery.mask.js" type="text/javascript" th:src="@{../JS/jquery.mask.js}"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('[data-toggle="tooltip"]').tooltip();
+                $('#listaPessoas').DataTable({
+                    "listaPessoas": true,
+                        "oLanguage": {
+                            "sProcessing":   "Processando...",
+                            "sLengthMenu":   "Mostrar _MENU_ registros",
+                            "sZeroRecords":  "Não foram encontrados resultados",
+                            "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                            "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
+                            "sInfoFiltered": "",
+                            "sInfoPostFix":  "",
+                            "sSearch":       "Buscar:",
+                            "sUrl":          "",
+                            "oPaginate": {
+                                "sFirst":    "Primeiro",
+                                "sPrevious": "Anterior",
+                                "sNext":     "Seguinte",
+                                "sLast":     "Último"
+                            }
+                        }
+                });
+
+                $('#telefonePessoa').mask('(00) 00000-0000');
+
+            } );
+        </script>
+
+  </body>
+</html>

@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="pt-br" xmlns:th="http://thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="shortcut icon" href="../static/IMG/icon.png" th:href="@{IMG/icon.png}"/>
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" type="text/css" href="../CSS/bootstrap4.1.min.css" th:href="@{CSS/bootstrap4.1.min.css}">
+    <!-- Font Awesome CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/CSS/all.min.css" th:href="@{CSS/all.min.css}">
+    <!-- Footer CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/CSS/footer.css" th:href="@{CSS/footer.css}">
+    <!-- DataTables CSS -->
+    <link rel="stylesheet" type="text/css" href="../static/CSS/dataTables.bootstrap4.min.css" th:href="@{CSS/dataTables.bootstrap4.min.css}">
+
+    <title>CRUD</title>
+
+    <style>
+         html,
+	        body,
+	        header,
+	        .view {
+	        height: 100%;
+	        }
+	
+	        @media (max-width: 740px) {
+	        html,
+	        body,
+	        header,
+	        .view {
+	            height: 1000px;
+	        }
+	        }
+	
+	        @media (min-width: 800px) and (max-width: 850px) {
+	        html,
+	        body,
+	        header,
+	        .view {
+	            height: 650px;
+	        }
+        }
+    </style>
+
+  </head>
+  <body>
+
+    <!-- Imagem de fundo -->
+    <div class="view" style="background-image: url(IMG/teste.jpg); background-repeat: no-repeat; background-size: cover;">
+
+        <nav class="navbar navbar-expand-lg navbar-light" style="background-color: rgba(0, 0, 0, 0.2);">
+            <h1 class="display-3 ml-auto mr-auto text-white">
+                CRUD
+            </h1>
+        </nav>
+
+        <!-- Mascara e Configuração de posicionamento dos elementos-->
+        <div class="d-flex justify-content-center align-items-center text-center">
+
+            <div class="container-fluid" style="margin-top: 10%;">
+                <div class="row mt-5">
+                    <div class="col-sm-12 col-md-7 col-lg-7">
+                        <!-- Manter a Aparência -->
+                    </div>
+                    <div class="col-sm-12 col-md-5 col-lg-5">
+                        <div class="card bg-transparent" style="margin-right: 10%; border: none;">
+                            <h1 class="display-4 mb-2 mt-3 text-white">Seja Bem-Vindo</h1>
+                            <div class="card-body mt-3">
+                                
+                                <a class="btn btn-outline-light btn-lg" href="#inicio">
+                                    <i class="fa fa-arrow-down"></i>
+                                </a>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="container-fluid p-5" id="inicio">
+
+        <h1 class="display-4 text-center" style="margin-bottom: 4.5%;">
+            <i class="fa fa-clipboard-list"></i> Lista de Pessoas
+        </h1>
+
+        <table class="table table-hover" id="listaPessoas">
+            <thead>
+                <tr class="text-center">
+                	<th>Código</th>
+                    <th>Nome</th>
+                    <th>Data de Nascimento</th>
+                    <th>Endereço</th>
+                    <th>Telefone</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="pessoa : ${pessoas}">
+                	<td th:text="${pessoa.codigo}" class="text-center"></td>
+                    <td>
+                        <a th:href="${(#mvc.url('IC#detalhesPessoa').arg(0, pessoa.codigo)).build()}" style="text-decoration: none;" th:text="${pessoa.nome}"></a>
+                        <span th:text="${pessoa.sobrenome}"></span>
+                    </td>
+                    <td th:text="${pessoa.dataDeNascimento}"></td>
+                    <td th:text="${pessoa.endereco}"></td>
+                    <td th:text="${pessoa.telefone}"></td>
+                    <td>
+                        <a th:href="${(#mvc.url('IC#atualizarPessoa').arg(0, pessoa.codigo)).build()}" class="btn btn-sm btn-secondary" data-toggle="tooltip" data-placement="bottom" title="Editar Informações">
+                            <i class="fa fa-edit"></i>
+                        </a>
+                        <a th:href="${(#mvc.url('IC#deletarPessoa').arg(0, pessoa.codigo)).build()}" class="btn btn-sm btn-danger" data-toggle="tooltip" data-placement="bottom" title="Deletar Pessoa">
+                            <i class="fa fa-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <a href="/cadastrarPessoa" class="btn btn-lg btn-block btn-primary mt-5">
+            <i class="fa fa-user-plus mr-2"></i> Adicionar Pessoa
+        </a>
+        
+        <br>
+        
+       	<th:block th:include="mensagemValidacao"></th:block>
+        
+
+    </div>
+
+    <footer class="footer text-center">
+      <div class="container">
+        <span class="text-muted">© 2018 Copyright Nichollas Falcão</span>
+      </div>
+    </footer>
+
+    <!-- jQuery, Popper.js, Bootstrap JS -->
+    
+        <script src="../static/JS/jquery-3.3.1.slim.min.js" type="text/javascript" th:src="@{JS/jquery-3.3.1.slim.min.js}"></script>        
+
+        <script src="../static/JS/popper.min.js" type="text/javascript" th:src="@{JS/popper.min.js}"></script>
+        <script src="../static/JS/bootstrap4.1.min.js" type="text/javascript" th:src="@{JS/bootstrap4.1.min.js}"></script>
+
+        <script src="../static/JS/all.min.js" type="text/javascript" th:src="@{JS/all.min.js}"></script>
+
+        <script src="../static/JS/jquery.dataTables.min.js" type="text/javascript" th:src="@{JS/jquery.dataTables.min.js}"></script>
+        <script src="../static/JS/dataTables.bootstrap4.min.js" type="text/javascript" th:src="@{JS/dataTables.bootstrap4.min.js}"></script>
+
+        <script>
+            $(document).ready(function() {
+                $('[data-toggle="tooltip"]').tooltip();
+                $('#listaPessoas').DataTable({
+                    "listaPessoas": true,
+                        "oLanguage": {
+                            "sProcessing":   "Processando...",
+                            "sLengthMenu":   "Mostrar _MENU_ registros",
+                            "sZeroRecords":  "Não foram encontrados resultados",
+                            "sInfo":         "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+                            "sInfoEmpty":    "Mostrando de 0 até 0 de 0 registros",
+                            "sInfoFiltered": "",
+                            "sInfoPostFix":  "",
+                            "sSearch":       "Buscar:",
+                            "sUrl":          "",
+                            "oPaginate": {
+                                "sFirst":    "Primeiro",
+                                "sPrevious": "Anterior",
+                                "sNext":     "Seguinte",
+                                "sLast":     "Último"
+                            }
+                        }
+                });
+            } );
+        </script>
+
+  </body>
+</html>
